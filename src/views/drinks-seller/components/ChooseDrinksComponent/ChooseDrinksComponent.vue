@@ -1,6 +1,6 @@
 <template>
     <div 
-        v-for="drink in props.drinksChoose" 
+        v-for="drink in drinksChoose" 
         class="ChooseDrinksComponent" 
         className="chooseDrinks"
     >
@@ -16,7 +16,7 @@
     import { type Drink } from '../../../models/drink'
     import ChooseDrinkComponent from './components/ChooseDrinkComponent.vue'
 
-    const props = defineProps<{
+    defineProps<{
         drinksChoose: Drink[]
         AddDrinksChosen(drink: Drink): void
     }>()

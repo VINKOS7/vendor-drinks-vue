@@ -1,15 +1,15 @@
 <template>
     <div  class="ChosenDrinksComponent" className="chosenDrinks">
-        <div v-if="props.drinks.length === 0">choose drink</div>
-        <div v-for="drink in drinks">
-            <ChosenDrinkComponent :drink="drink"/>
+        <div v-if="drinks.length === 0">choose drink</div>
+        <div v-for="drink, key in drinks">
+            <ChosenDrinkComponent :key="key" :drink="drink"/>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-    import { Drink } from '../../../models/drink';
     import ChosenDrinkComponent from './components/ChosenDrinkComponent.vue'
+    import type { Drink } from '../../../models/drink';
     import type { ChosenDrink } from './models/ChosenDrink';
     
     const props = defineProps<{

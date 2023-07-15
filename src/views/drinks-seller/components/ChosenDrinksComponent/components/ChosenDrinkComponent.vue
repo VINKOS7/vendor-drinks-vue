@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-    import { Drink } from '../../../../models/drink';
+    import type { Drink } from '../../../../models/drink';
 
     const props = defineProps<{
         drink: Drink

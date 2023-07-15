@@ -1,8 +1,8 @@
 <template>
     <div class="ChooseDrinkComponent">          
         <div className="chooseDrink" @click={props.AddDrinksChosen}>
-            <img className="styles.chooseDrinkIcon" src="props.drink.image"/>
-            <div className="styles.chooseDrinkText">
+            <img className="chooseDrinkIcon" src={{drink.image}}/>
+            <div className="chooseDrinkText">
                 <div>name: {{props.drink.name}}</div>    
                 <div>price: {{props.drink.price}}</div>    
                 <div>quantity: {{props.drink.quantity}}</div>    
