@@ -1,13 +1,13 @@
 <template>
-    <div className="buyBtn">
+    <div :class="$style.buyBtn">
         <div v-if="difference < 0 && props.price > 0" >
-            <div @click={Buy} className={buyBtnActive}>
-                    <div className={buyBtnText}>buy</div>
+            <div @click={Buy} :class="$style.buyBtnActive">
+                    <div :class="$style.buyBtnText">buy</div>
             </div>
         </div>
         <div v-if="difference < 0">
-            <div className={buyBtnNotEnoughMoney}>
-                    <div className={buyBtnText}>lacks money</div>
+            <div :class="$style.buyBtnNotEnoughMoney">
+                    <div :class="$style.buyBtnText">lacks money</div>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
     const difference = props.price - props.money
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
     .buyBtnActive {
         background-color: rgba(0, 255, 191, 0.842);
         margin-left: 2vw;

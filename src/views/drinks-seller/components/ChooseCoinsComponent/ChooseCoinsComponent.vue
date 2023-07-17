@@ -1,5 +1,5 @@
 <template>
-    <div className="chooseCoins">
+    <div :class="$style.chooseCoins">
         <div v-for="coin, key in coins">
             <ChooseCoinComponent :key="key" :AddCoinsChosen="AddCoinsChosen" :coin="coin"/>
         </div>
@@ -9,6 +9,7 @@
 
 <script setup lang="ts"> 
     import { type Coin } from '../../models/coin'
+    import ChooseCoinComponent from './component/ChooseCoinComponent.vue'
     
     defineProps<{
         AddCoinsChosen(coin: Coin): void
@@ -22,7 +23,7 @@
     ] as Coin[]
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
     .chooseCoins {
         height: 25vh;
         margin-top: 40px;

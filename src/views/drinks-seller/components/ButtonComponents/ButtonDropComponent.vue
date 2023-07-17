@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div v-if="price + money > 0" className="dropBtn">
-            <div className="dropBtnText">drop</div>
+        <div v-if="price + money > 0" :class="$style.dropBtn">
+            <div :class="$style.dropBtnText">drop</div>
         </div>       
     </div>
 </template>
@@ -14,7 +14,7 @@
     }>()
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
     .dropBtn {
         background-color: rgb(255, 0, 0);
         margin-left: -17vw;

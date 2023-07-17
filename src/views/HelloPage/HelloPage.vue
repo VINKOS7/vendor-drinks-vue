@@ -10,12 +10,12 @@ const Click = () => {
 </script>
 
 <template>
-    <div className="helloPage" class="HelloPage" @click="Click">
-        <div className="GoButton">GO TO DRINKS!</div>
+    <div :class="$style.helloPage" @click="Click">
+        <div :class="$style.GoButton">GO TO DRINKS!</div>
     </div>
 </template> 
  
-<style lang="scss" scoped>
+<style lang="scss" module>
 body {
     background-color: rgb(70, 56, 122);
 }

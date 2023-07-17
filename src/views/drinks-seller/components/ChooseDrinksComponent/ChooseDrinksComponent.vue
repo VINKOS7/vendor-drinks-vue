@@ -1,14 +1,12 @@
 <template>
-    <div 
-        v-for="drink in drinksChoose" 
-        class="ChooseDrinksComponent" 
-        className="chooseDrinks"
-    >
-        <ChooseDrinkComponent 
-            v-if="drink.quantity > 0" 
-            :drink="drink" 
-            :AddDrinksChosen="AddDrinksChosen" 
-        />
+    <div :class="$style.chooseDrinks">
+        <div v-for="drink in drinksChoose">
+            <ChooseDrinkComponent 
+                v-if="drink.quantity > 0" 
+                :drink="drink" 
+                :AddDrinksChosen="AddDrinksChosen" 
+            />
+        </div>
     </div>
 </template>  
 
@@ -22,9 +20,10 @@
     }>()
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
     .chooseDrinks{
         height: 51vh;
+        width: 98vw;
         border-bottom: 2px solid;
         border-color: white;
         overflow-y: scroll;

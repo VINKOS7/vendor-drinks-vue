@@ -1,31 +1,25 @@
 <template>
-        <div className="drinksSeller">
-            <ChooseDrinksComponent :drinksChoose="drinksChoose" :AddDrinksChosen="AddDrinksChosen"/>         
-            <ChosenCoinsComponent :coins="coinsChosen"/>
-            <ChooseCoinsComponent :AddCoinsChosen="AddCoinsChosen"/>
-            {price + money > 0 && 
-
-                <div className="infoCheckPanel">                
-                    <div className="infoCheck">
-                        price: {price}
-                        money: {money}
-                    </div>
-                </div>
-            }
-            <div className="endPanel">
-                <div className="endPanelItem">
-                    <ButtonDropComponent :Drop="Drop" :price="price" :money="money"/>
-                </div>
-                <div className="endPanelItem">
-                    <ChosenDrinksComponent :drinks="drinksChosen"/>
-                </div>
-                <div className="endPanelItem">
-                    <ButtonBuyComponent :Buy="Buy" :price="price" :money="money"/>
-                </div>       
-            </div>       
+    <div :class="$style.drinksSeller">
+        <ChooseDrinksComponent :drinksChoose="drinksChoose" :AddDrinksChosen="AddDrinksChosen"/>         
+        <ChosenCoinsComponent :coins="coinsChosen"/>
+        <ChooseCoinsComponent :AddCoinsChosen="AddCoinsChosen"/>
+        <div v-if="price + money" :class="$style.infoCheckPanel">                
+            <div :class="$style.infoCheck">
+                price: {price}
+                money: {money}
+            </div>
         </div>
-    <div class="drinksSeller">
-        <div>DrinksSeller</div>
+        <div :class="$style.endPanel">
+            <div :class="$style.endPanelItem">
+                <ButtonDropComponent :Drop="Drop" :price="price" :money="money"/>
+            </div>
+            <div :class="$style.endPanelItem">
+                <ChosenDrinksComponent :drinks="drinksChosen"/>
+            </div>
+            <div :class="$style.endPanelItem">
+                <ButtonBuyComponent :Buy="Buy" :price="price" :money="money"/>
+            </div>       
+        </div>       
     </div>
 </template>
 
@@ -41,9 +35,9 @@
     import type { Drink } from '../models/drink';
     import type { Coin } from './models/coin';
 
-    const drinksChosen = ref([] as Drink[])
-    const coinsChosen = ref([] as Coin[])
     const drinksChoose = ref(GetDrinks())
+    const drinksChosen = ref(drinksChoose.value)
+    const coinsChosen = ref([] as Coin[])
 
     const price = drinksChosen.value.map(d => d.price*d.quantity).reduce((partialSum, a) => partialSum + a, 0)
     const money = coinsChosen.value.map(c => c.value).reduce((partialSum, a) => partialSum + a, 0)
@@ -55,9 +49,8 @@
 
         if(idx !== -1) {
             if(drink.quantity > 0){
-                drink.quantity--
-
-                drinksChosen.value = drinksChosen.value.concat({
+                
+                drinksChosen.value.push({
                     id: drink.id,
                     name: drink.name,
                     image: drink.image,
@@ -65,6 +58,10 @@
                     quantity: 1,
                     cup: drink.cup
                 } as Drink)
+
+                console.log(drinksChosen.value)
+
+                drink.quantity--
             }
             else console.error('store quntity and chosen drink, not equals to DrinksSeller')          
         }
@@ -82,14 +79,14 @@
     }
 </script>
 
-<style lang="scss" scoped>
-    .drinksSeller{
-        color: white; 
-    }
-
+<style lang="scss" module>
     body {
         overflow-y: hidden;
         background-color: rgb(32, 29, 37);
+    }
+
+    .drinksSeller{
+        color: white; 
     }
 
     .endPanel {

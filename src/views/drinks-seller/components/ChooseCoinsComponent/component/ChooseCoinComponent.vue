@@ -1,13 +1,13 @@
 <template>
-    <div @click="() => AddCoinsChosen(coin)">
-        <div className="chooseCoinText">
+    <div @click="() => AddCoinsChosen(coin)" :class="$style.chooseCoin">
+        <div :class="$style.chooseCoinText">
             {{coin.value + ' ' + coin.currency}}
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { Coin } from '../../../models/coin';
+    import type { Coin } from '../../../models/coin';
 
     defineProps<{
         coin: Coin
@@ -15,7 +15,7 @@ import { Coin } from '../../../models/coin';
     }>()
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
     .chooseCoin {
         height: 5vh;
         width: 95vw;

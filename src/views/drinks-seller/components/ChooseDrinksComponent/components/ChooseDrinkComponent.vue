@@ -1,30 +1,34 @@
 <template>
-    <div class="ChooseDrinkComponent">          
-        <div className="chooseDrink" @click={props.AddDrinksChosen}>
-            <img className="chooseDrinkIcon" src={{drink.image}}/>
-            <div className="chooseDrinkText">
-                <div>name: {{props.drink.name}}</div>    
-                <div>price: {{props.drink.price}}</div>    
-                <div>quantity: {{props.drink.quantity}}</div>    
-            </div>
-        </div>          
-    </div>
+    <div v-if="!isBlock" :class="$style.chooseDrink" @click="() => AddDrinksChosen(drink)">
+        <img :class="$style.chooseDrinkIcon" :src="drink.image"/>
+        <div :class="$style.chooseDrinkText">
+            <div>name: {{drink.name}}</div>    
+            <div>price: {{drink.price}}</div>    
+            <div>quantity: {{drink.quantity}}</div>    
+        </div>
+    </div> 
 </template>  
 
 <script setup lang="ts">
-    import { type Drink } from "../../../../models/drink"
+    import type { Drink } from "../../../../models/drink"
     
     const props = defineProps<{
         drink: Drink
         AddDrinksChosen(drink: Drink): void
     }>()
-    
+
+    const blockedIdsDrinkData = localStorage.getItem('drink-ids-blocked')
+
     let isBlock = false
+
+    if(blockedIdsDrinkData) 
+        if((JSON.parse(blockedIdsDrinkData) as string[]).findIndex(id => id === props.drink.id) !== -1)
+            isBlock = true;     
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
     .chooseDrink {
-        width: 94vw;
+        width: 91vw;
         background-color: rgba(109, 119, 206, 0.253);
         border-radius: 10px;
         margin-top: 10px;

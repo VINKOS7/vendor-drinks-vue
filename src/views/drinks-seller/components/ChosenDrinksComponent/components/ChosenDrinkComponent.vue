@@ -1,8 +1,8 @@
 <template>
-        <div class="ChosenDrinkComponent" className="chosenDrink">
+        <div :class="$style.chosenDrink">
             <div>
                 <div>{{props.drink.name}}</div>
-                <img className="chosenDrinkIcon" src={{props.drink.image}}/>
+                <img :class="$style.chosenDrinkIcon" :src="props.drink.image"/>
                 <div>{{props.drink.quantity}}</div>
             </div>
         </div>
@@ -16,7 +16,7 @@
     }>()
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
     .chosenDrinkIcon {
         width: 64px;
         height: 64px;

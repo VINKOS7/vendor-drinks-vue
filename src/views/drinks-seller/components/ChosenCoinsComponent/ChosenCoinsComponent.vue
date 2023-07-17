@@ -1,5 +1,5 @@
 <template>
-    <div className={styles.chosenCoins}>
+    <div :class="$style.chosenCoins">
         <div v-for="coin, key in chosenCoins">
             <ChosenCoinComponent :key="key" :coin="coin"/>
         </div>
@@ -31,7 +31,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
     .chosenCoins {
         margin-left: 1vw;
         height: 3px;

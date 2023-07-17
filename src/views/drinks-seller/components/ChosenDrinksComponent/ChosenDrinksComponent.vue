@@ -1,5 +1,5 @@
 <template>
-    <div  class="ChosenDrinksComponent" className="chosenDrinks">
+    <div :class="$style.chosenDrinks">
         <div v-if="drinks.length === 0">choose drink</div>
         <div v-for="drink, key in drinks">
             <ChosenDrinkComponent :key="key" :drink="drink"/>
@@ -29,7 +29,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" module>
     .chosenDrinks {
         width: 60vw;
         height: 145px;
