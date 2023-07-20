@@ -9,10 +9,10 @@
 </template>
 
 <script setup lang="ts">
-    import type { Drink } from '../../../../models/drink';
+    import type { ChosenDrink } from '../models/ChosenDrink';
 
     const props = defineProps<{
-        drink: Drink
+        drink: ChosenDrink
     }>()
 </script>
 
@@ -24,7 +24,7 @@
         display:inline-block;
     }
 
-    .chosenDrink {
+    div:has(> .chosenDrink) {
         display:inline-block;
         width: 90px;
         margin: 5px;

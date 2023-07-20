@@ -12,12 +12,12 @@
 
 <script setup lang="ts">
     import { type Drink } from '../../../models/drink'
-    import ChooseDrinkComponent from './components/ChooseDrinkComponent.vue'
+    import ChooseDrinkComponent from './components/ChooseDrinkComponent.vue' 
 
     defineProps<{
         drinksChoose: Drink[]
         AddDrinksChosen(drink: Drink): void
-    }>()
+    }>() 
 </script>
 
 <style lang="scss" module>

@@ -1,6 +1,6 @@
 <template>
     <div :class="$style.chosenCoins">
-        <div v-for="coin, key in chosenCoins">
+        <div v-for="coin, key in UpdateCoins()">
             <ChosenCoinComponent :key="key" :coin="coin"/>
         </div>
     </div>
@@ -13,21 +13,24 @@
  
     const props = defineProps<{
         coins: Coin[]
-    }>()
+    }>() 
 
-    const chosenCoins = [] as ChosenCoin[]
+    const UpdateCoins = () => {
+        const chosenCoins = [] as ChosenCoin[]
 
-    if(props.coins.length !== 0) {     
-        props.coins.forEach(c => {
-            const idx = chosenCoins.findIndex(coin => c.value === coin.coin.value)
-
-            if(idx === -1)
-            chosenCoins.push({
-                    coin: c, 
-                    quantity:  props.coins.filter(coin => coin.value === c.value).length
+        if(props.coins.length !== 0) {     
+            props.coins.forEach(c => {
+                const idx = chosenCoins.findIndex(coin => c.value === coin.coin.value)
+               
+                if(idx === -1) chosenCoins.push({
+                        coin: c, 
+                        quantity:  props.coins.filter(coin => coin.value === c.value).length
                 })           
-            else chosenCoins[idx].quantity = props.coins.filter(coin => coin.value === c.value).length   
-        })
+                else chosenCoins[idx].quantity = props.coins.filter(coin => coin.value === c.value).length   
+            })
+        }
+
+        return chosenCoins
     }
 </script>
 

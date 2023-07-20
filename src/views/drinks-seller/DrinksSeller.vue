@@ -3,10 +3,10 @@
         <ChooseDrinksComponent :drinksChoose="drinksChoose" :AddDrinksChosen="AddDrinksChosen"/>         
         <ChosenCoinsComponent :coins="coinsChosen"/>
         <ChooseCoinsComponent :AddCoinsChosen="AddCoinsChosen"/>
-        <div v-if="price + money" :class="$style.infoCheckPanel">                
+        <div v-if="price + money > 0" :class="$style.infoCheckPanel">                
             <div :class="$style.infoCheck">
-                price: {price}
-                money: {money}
+                price: {{price}}
+                money: {{money}}
             </div>
         </div>
         <div :class="$style.endPanel">
@@ -36,13 +36,17 @@
     import type { Coin } from './models/coin';
 
     const drinksChoose = ref(GetDrinks())
-    const drinksChosen = ref(drinksChoose.value)
+    const drinksChosen = ref([] as Drink[])
     const coinsChosen = ref([] as Coin[])
 
-    const price = drinksChosen.value.map(d => d.price*d.quantity).reduce((partialSum, a) => partialSum + a, 0)
-    const money = coinsChosen.value.map(c => c.value).reduce((partialSum, a) => partialSum + a, 0)
+    const price = ref(0)
+    const money = ref(0)
 
-    const AddCoinsChosen = (coin: Coin) => coinsChosen.value = coinsChosen.value.concat(coin)
+    const AddCoinsChosen = (coin: Coin) =>
+    { 
+        coinsChosen.value = coinsChosen.value.concat(coin) 
+        money.value = coinsChosen.value.map(c => c.value).reduce((partialSum, a) => partialSum + a, 0)    
+    }
 
     const AddDrinksChosen = (drink: Drink) => {
         const idx = drinksChoose.value.findIndex(d => d.id === drink.id)
@@ -50,7 +54,7 @@
         if(idx !== -1) {
             if(drink.quantity > 0){
                 
-                drinksChosen.value.push({
+                drinksChosen.value = drinksChosen.value.concat({
                     id: drink.id,
                     name: drink.name,
                     image: drink.image,
@@ -59,9 +63,9 @@
                     cup: drink.cup
                 } as Drink)
 
-                console.log(drinksChosen.value)
-
                 drink.quantity--
+
+                price.value = drinksChosen.value.map(d => d.price*d.quantity).reduce((partialSum, a) => partialSum + a, 0)
             }
             else console.error('store quntity and chosen drink, not equals to DrinksSeller')          
         }
@@ -72,6 +76,8 @@
         drinksChosen.value = []
         drinksChoose.value = GetDrinks()
         coinsChosen.value = []
+        price.value = 0
+        money.value = 0
     }
 
     const Buy = () => {

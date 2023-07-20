@@ -12,12 +12,16 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@types/react": "^18.2.15",
     "@types/uuid": "^9.0.2",
+    "@u3u/vue-hooks": "^2.0.1",
     "force": "^0.0.3",
     "node-sass": "^9.0.0",
+    "react": "^18.2.0",
     "sass": "^1.63.6",
     "uuid": "^9.0.0",
     "vue": "^3.3.4",
+    "vue-hooks": "^0.3.2",
     "vue-router": "^4.2.4"
   },
   "devDependencies": {

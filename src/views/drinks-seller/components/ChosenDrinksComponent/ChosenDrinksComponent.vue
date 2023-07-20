@@ -1,7 +1,7 @@
 <template>
     <div :class="$style.chosenDrinks">
         <div v-if="drinks.length === 0">choose drink</div>
-        <div v-for="drink, key in drinks">
+        <div v-else v-for="drink, key in FilterDrinks()">
             <ChosenDrinkComponent :key="key" :drink="drink"/>
         </div>
     </div>
@@ -14,18 +14,22 @@
     
     const props = defineProps<{
         drinks: Drink[]
-    }>()
-    
-    const drinks = [] as ChosenDrink[]
+    }>() 
 
-    if(props.drinks.length !== 0){  
-        props.drinks.map(d => {
-            const quantity = props.drinks.filter(drink => drink.id === d.id).length
-            const idx = drinks.findIndex(dr => dr.id == d.id)
+    const FilterDrinks = () => {
+        const drinksChosen = [] as ChosenDrink[]
 
-            if(idx === -1) drinks.push({id: d.id, name: d.name, image: d.image, quantity: quantity})
-            else drinks[idx].quantity = quantity     
-        })
+        if(props.drinks.length !== 0){  
+            props.drinks.map(d => {
+                const quantity = props.drinks.filter(drink => drink.id === d.id).length
+                const idx = drinksChosen.findIndex(dr => dr.id == d.id)
+
+                if(idx === -1) drinksChosen.push({id: d.id, name: d.name, image: d.image, quantity: quantity})
+                else drinksChosen[idx].quantity = quantity     
+            })
+        }
+
+        return drinksChosen
     }
 </script>
 

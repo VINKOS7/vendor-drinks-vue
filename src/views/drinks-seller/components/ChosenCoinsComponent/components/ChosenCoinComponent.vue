@@ -1,5 +1,5 @@
 <template>
-    <div className={styles.chosenCoin}>
+    <div :class="$style.chosenCoin">
         {{coin.coin.value + ' ' 
         + coin.coin.currency +  ' ' 
         + coin.quantity}}
@@ -12,8 +12,9 @@
     defineProps<{coin: ChosenCoin}>()
 </script>
 
-<style lang="scss" scoped>
-    .chosenCoin {
+<style lang="scss" module>
+
+    div:has(> .chosenCoin) {
         display:inline-block;
         background-color: aliceblue;
         color: black;

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="price + money > 0" :class="$style.dropBtn">
+        <div @click="Drop" v-if="price + money > 0" :class="$style.dropBtn">
             <div :class="$style.dropBtnText">drop</div>
         </div>       
     </div>
