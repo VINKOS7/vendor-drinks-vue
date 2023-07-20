@@ -32,4 +32,4 @@
     .chooseCoinText {
         padding-top: 13px;
     }
-</style>
+</style>../../../../models/coin

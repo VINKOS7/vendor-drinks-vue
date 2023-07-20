@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-    import type { ChosenCoin } from './Models/ChosenCoin';
+    import type { ChosenCoin } from '@/views/models/ChosenCoin';
 
     defineProps<{coin: ChosenCoin}>()
 </script>
@@ -22,4 +22,4 @@
         padding: 5px;
         border-radius: 10px;
     }
-</style>
+</style>../../../../models/ChosenCoin

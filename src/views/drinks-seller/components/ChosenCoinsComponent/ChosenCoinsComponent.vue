@@ -7,9 +7,9 @@
 </template>
 
 <script setup lang="ts">
+    import type { Coin } from "../ChooseCoinsComponent/models/coin"
+    import type { ChosenCoin } from "./models/ChosenCoin"
     import ChosenCoinComponent from "./components/ChosenCoinComponent.vue"
-    import type { Coin } from '../../models/coin';
-    import type { ChosenCoin } from './components/Models/ChosenCoin';
  
     const props = defineProps<{
         coins: Coin[]
@@ -40,3 +40,4 @@
         height: 3px;
     }
 </style>
+../../../models/coin../../../models/ChosenCoin

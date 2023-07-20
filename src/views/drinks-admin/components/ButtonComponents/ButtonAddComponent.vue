@@ -1,0 +1,32 @@
+<template>
+    <div :class="$style.buyBtn">
+        <div @click="Add" :class="$style.addBtn">
+            <div :class="$style.buyBtnText">add</div>
+        </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+    defineProps<{Add(): void}>()
+</script>
+
+<style lang="scss" module>
+    .addBtn{
+        background-color: rgba(0, 255, 191, 0.842);
+        height: 70px;
+        width: 20vw;
+        border-bottom-right-radius: 40px;
+        margin-left: 4.6vw;
+        margin-top: 10px;
+        color: black;
+
+    }
+
+    .addBtn:hover {
+        background-color: rgb(0, 255, 191);
+    }
+
+    .buyBtnText {
+        line-height: 70px;
+    }
+</style>

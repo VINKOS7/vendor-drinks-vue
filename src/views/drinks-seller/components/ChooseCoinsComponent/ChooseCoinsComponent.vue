@@ -28,4 +28,4 @@
         height: 25vh;
         margin-top: 40px;
     }
-</style>
+</style>../../../models/coin

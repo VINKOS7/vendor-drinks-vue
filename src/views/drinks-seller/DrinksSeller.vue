@@ -30,12 +30,12 @@
     import ChosenDrinksComponent from "./components/ChosenDrinksComponent/ChosenDrinksComponent.vue"
     import ButtonDropComponent from "./components/ButtonComponents/ButtonDropComponent.vue"
     import ButtonBuyComponent from "./components/ButtonComponents/ButtonBuyComponent.vue" 
-    import { GetDrinks } from '@/services/GetDrinks';
+    import { GetAndUpdateDrinks } from '@/services/GetAndUpdateDrinks';
     import { ref } from 'vue';
     import type { Drink } from '../models/drink';
     import type { Coin } from './models/coin';
 
-    const drinksChoose = ref(GetDrinks())
+    const drinksChoose = ref(await GetAndUpdateDrinks())
     const drinksChosen = ref([] as Drink[])
     const coinsChosen = ref([] as Coin[])
 
@@ -72,12 +72,13 @@
         else console.error('not found drink id to DrinksSeller')    
     }
 
-    const Drop = () => {
-        drinksChosen.value = []
-        drinksChoose.value = GetDrinks()
+    const Drop = async () => {
+        drinksChosen.value = []     
         coinsChosen.value = []
         price.value = 0
         money.value = 0
+
+        drinksChoose.value = await GetAndUpdateDrinks()
     }
 
     const Buy = () => {
@@ -119,4 +120,4 @@
         margin-top: -10px;
         margin-bottom: 7px;
     }
-</style>
+</style>../models/coin
