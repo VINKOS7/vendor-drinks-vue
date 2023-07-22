@@ -40,4 +40,3 @@
         height: 3px;
     }
 </style>
-../../../models/coin../../../models/ChosenCoin
