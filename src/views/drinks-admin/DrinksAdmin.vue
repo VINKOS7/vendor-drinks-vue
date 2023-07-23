@@ -38,10 +38,9 @@
     import type { Drink } from '../models/drink';
     import type { BlockIdsDrinkRequest } from '@/connection/drinks-admin/requests';
 
-    import { GetAndUpdateDrinks } from '@/services/GetAndUpdateDrinks';
     import { GetDrinks } from '@/services/GetDrinks';
 
-    const drinks = await GetAndUpdateDrinks()
+    const drinks = GetDrinks()
     const drinksChosen = ref([] as Drink[])
     const drinksChoose = ref(drinks)
 
